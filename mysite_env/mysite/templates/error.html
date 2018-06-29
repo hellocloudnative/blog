@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}张鹏璇的博客{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-xs-10 col-xs-offset-1">
+    <div style="margin-top: 10em;border:1px ;text-align:center; padding: 10em;"> {{ message}}，<a href="{{ redirect_to }}">返回</a> </div>
+        </div>
+    </div>
+{% endblock %}
