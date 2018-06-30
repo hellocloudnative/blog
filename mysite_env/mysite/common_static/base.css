@@ -2,9 +2,12 @@
             margin: 0;
             padding: 0;
         }
+
 body {
     margin-top: 70px!important;
+
 }
+
 
 ul {
     list-style-type: none!important;
@@ -16,7 +19,8 @@ div.header-banner {
     margin-top: -6em;
     padding-top: 12em;
     margin-bottom: 2em;
-    background-color: #4F5893;
+    background: #337ab7;
+ ;
 }
 div.container {
     padding-right: 15px;
@@ -27,15 +31,18 @@ div.container {
 
 div.header-banner h1 {
     font-size: 3em;
-    color: #fff;
+    color: white;
     margin-bottom: 12px;
 }
 div.header-banner p {
     font-weight: 300;
     line-height: 1.4;
     font-size: 1.5em;
-    color: #B9BFE4;
+    color: white;
     margin: 5px 0;
+}
+div.header-banner p.ren {
+    margin-left: 45em;
 }
 div.home-block {
     /* border: 1px #ccc solid; */
@@ -46,7 +53,7 @@ div.home-block {
 div.page-bottom {
     width: 100%;
     clear: both;
-    background: #e7e7e7;
+    background: #222222;
     margin-top: 2.5em;
     padding: 1em 0 0;
     color: #777;
@@ -67,6 +74,6 @@ div.page-bottom .copyright {
     text-align: center;
     padding: 0.5em 0;
     margin-top: 1.5em;
-    background: #4F5893;
+    background: #337ab7;
     color: #e7e7e7;
 }

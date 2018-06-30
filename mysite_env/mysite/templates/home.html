@@ -3,82 +3,196 @@
 
 {% block nav_home_active %}active{% endblock %}
 {% block zpx_blog %}
-<div class="header-banner">
-     <div class="container">
-            <h1>Zpx Blog</h1>
-            <p>只为原创，发表<span class="hidden-xs">个人原创</span>高质量的技术博客</p>
-            <p>张鹏璇的博客</p>
+    <div class="header-banner">
+        <div class="container">
+            <h1>张鹏璇的博客</h1>
+            <p>“人之能，不仅在学，且在悟。
+                <span class="hidden-xs">悟之根本，不在少学，在难后重学。</span>大难而有大悟，始得大成！”
+            </p>
+            <p class="ren"><b>——鬼谷子</b></p>
         </div>
- </div>
+    </div>
 {%  endblock %}
 
 {#页面标题#}
 {% block title %}
-  张鹏璇的博客
+    张鹏璇的博客
 {% endblock %}
 
 {% block header_extends %}
     <link rel="stylesheet" href="{% static "home.css" %}">
     <script src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
- {% endblock %}
- 
+{% endblock %}
+
 {#页面内容#}
 {% block content %}
+    <div class="container">
+        <div class="content-item">
+            <h3 class="content-item-title">
+                <span class="glyphicon glyphicon-pencil"></span>
+                <span>博客</span>
+                <span class="content-more">
+                共{{ page_of_blogs.paginator.count }}篇博客
+                <a href="/blog/">更多&gt;</a>
+            </span>
+            </h3>
+            <div class="row">
+                <div class="col-sm-4">
+                    <h4 class='home-block-title'>博客分类</h4>
+                    <ul class="list" >
+                        {% for blog_type in blog_types %}
+                            <li><a href="{% url "blogs_with_type" blog_type.pk %}">
+                                <span>{{ blog_type.type_name }}</span>
+                                ({{ blog_type.blog_count }})
+                            </a>
+                            </li>
+                        {% empty %}
+                            <li>暂无分类</li>
+                        {% endfor %}
+                    </ul>
 
-    <h3 class="home-content">欢迎访问我的网站，随便看</h3>
-    
-    <div id="container"></div>
+                </div>
 
-<div class="content-item">
+
+                <div class="col-sm-8">
+                    <div class="home-block" style="min-height: 380px;">
+                        <!--阅读排行榜-->
+                        <div class="read-nav">
+                            <div class="read-list">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="active"><a href="javascript:void(0);">公众号</a></li>
+                                    <li><a href="javascript:void(0);">趋势图</a></li>
+                                    <li><a href="javascript:void(0);">昨日阅读榜</a></li>
+                                    <li><a href="javascript:void(0);">留言板</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="read-content">
+                            <div class="read-content-item">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <img style="width: 100%; max-width: 15em;" src="{% static 'images/IMG_6849.JPG' %}">
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <h4 style="margin-bottom: 0em;margin-top: 1em;font-weight: bolder;">
+                                            用心写给你的故事
+                                        </h4>
+                                        <p style="margin-bottom: 2em;">努力一定会有回报！</p>
+                                        <p>我的公众号用来写我的思考和感悟。<br>也可通过公众号和我聊天~</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="read-content-item read-chart" style="display:none;">
+                                <div class="row">
+                                    <div class="col-md-10 col-md-offset-1">
+                                        <div id="container" style="height:293px">加载数据中...</div>
+                                        <p id="chart_text"></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="read-content-item" style="display:none;">
+                                <ul class="list">
+
+
+                                    {% for hot_data in yesterday_hot_data %}
+                                        <li>
+                                            <span class="glyphicon glyphicon-arrow-up"></span>
+                                            <span class="read-num">{{ hot_data.read_num  }}</span>
+                                            <a href="{% url 'blog_detail' hot_data.content_object.pk %}">{{ hot_data.content_object.title }}</a></li>
+                                    {% empty %}
+                                        <li>昨天暂时没有热门博客</li>
+                                    {% endfor %}
+
+                                </ul>
+                            </div>
+
+                            <div class="read-content-item" style="display:none;">
+                                <div class="row">
+                                    <div class="col-md-10 col-md-offset-1" style="margin-top:1em;">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+    </div>
+    <div class="content-item">
         <h3 class="content-item-title">
             <span class="glyphicon glyphicon-fire"></span>
             <span>热读榜</span>
         </h3>
-     <div class="row">
-                <div class="col-sm-4">
-                    <div class="home-block">
-                        <h4 class='home-block-title'>今日榜</h4>
-                        <ul class="list">                       
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="home-block">
+                    <h4 class='home-block-title'>今日榜</h4>
+                    <div class="read-content-item2">
+                        <ul class="list">
                             {% for hot_data in today_hot_data %}
-                                    <li><a href="{% url 'blog_detail' hot_data.content_object.pk %}">{{ hot_data.content_object.title }}</a>({{ hot_data.read_num  }})</li>
+                                <li>
+                                    <span class="glyphicon glyphicon-arrow-up"></span>
+                                    <span class="read-num">{{ hot_data.read_num  }}</span>
+                                    <a href="{% url 'blog_detail' hot_data.content_object.pk %}">{{ hot_data.content_object.title }}</a></li>
                             {% empty %}
-                                    <li>今天暂时没有热门博客</li>
-                            {% endfor %}                            
-                                                  
+                                <li>今天暂时没有热门博客</li>
+                            {% endfor %}
+
                         </ul>
                     </div>
                 </div>
+            </div>
 
-                <div class="col-sm-4">
-                    <div class="home-block">
-                        <h4 class='home-block-title'>昨日榜</h4>
-                        <ul class="list">                       
-                                {% for hot_data in yesterday_hot_data %}
-                                        <li><a href="{% url 'blog_detail' hot_data.content_object.pk %}">{{ hot_data.content_object.title }}</a>({{ hot_data.read_num  }})</li>
-                                {% empty %}
-                                        <li>昨天暂时没有热门博客</li>
-                                {% endfor %}                       
-                                                  
+            <div class="col-sm-4">
+                <div class="home-block">
+                    <h4 class='home-block-title'>昨日榜</h4>
+                    <div class="read-content-item2">
+                        <ul class="list">
+                            {% for hot_data in yesterday_hot_data %}
+                                <li>
+                                    <span class="glyphicon glyphicon-arrow-up"></span>
+                                    <span class="read-num">{{ hot_data.read_num  }}</span>
+                                    <a href="{% url 'blog_detail' hot_data.content_object.pk %}">{{ hot_data.content_object.title }}</a></li>
+                            {% empty %}
+                                <li>昨天暂时没有热门博客</li>
+                            {% endfor %}
+
                         </ul>
                     </div>
                 </div>
+            </div>
 
 
-                <div class="col-sm-4">
-                    <div class="home-block">
-                        <h4 class='home-block-title'>周榜</h4>
-                        <ul class="list">                       
+            <div class="col-sm-4">
+                <div class="home-block" >
+                    <h4 class='home-block-title'>周榜</h4>
+                    <div class="read-content-item2">
+                        <ul class="list">
                             {% for hot_blog in hot_blogs_for_7_days %}
-                                    <li><a href="{% url 'blog_detail' hot_blog.id %}">{{ hot_blog.title }}</a>({{ hot_blog.read_num_sum  }})</li>
+                                <li>
+                                    <span class="glyphicon glyphicon-arrow-up"></span>
+                                    <span class="read-num">{{ hot_blog.read_num_sum  }}</span>
+                                    <a href="{% url 'blog_detail' hot_blog.id %}">{{ hot_blog.title }}</a></li>
                             {% empty %}
-                                    <li>本周暂时没有热门博客</li>
-                            {% endfor %}                       
-                                                  
+                                <li>本周暂时没有热门博客</li>
+                            {% endfor %}
+
                         </ul>
                     </div>
-                </div>  
-            </div> 
-        </div>        
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
     <script>
         // 图表配置
         var options = {
@@ -122,5 +236,51 @@
         var chart = Highcharts.chart('container', options);
     </script>
 
-    
+
+    <script type="text/javascript">
+        /*绑定切换排行榜页面*/
+        $(".read-list li").each(function(){
+            $(this).click(function(){
+                //设置active
+                var index = $(".read-list li").index($(this));
+                $(".read-list li").removeClass('active');
+                $(this).addClass('active');
+
+                //切换标签页
+                $(".read-content-item").hide();
+                $(".read-content-item:eq(" + index + ")").show();
+            });
+        });
+
+        /*设置排行样式*/
+        $(".read-content-item").each(function(){
+            var icons = ['glyphicon-thumbs-up', 'glyphicon-fire']
+            var old_icons = 'glyphicon-arrow-up'
+
+            for (var i = 0; i < icons.length; i++) {
+                var item = $(this).find('ul li:eq('+i+')');
+                var icon = item.find('.glyphicon');
+                if(icon){
+                    icon.removeClass(old_icons)
+                    icon.addClass(icons[i]);
+                }
+            };
+        });
+              /*设置排行样式*/
+        $(".read-content-item2").each(function(){
+            var icons = ['glyphicon-thumbs-up', 'glyphicon-fire']
+            var old_icons = 'glyphicon-arrow-up'
+
+            for (var i = 0; i < icons.length; i++) {
+                var item = $(this).find('ul li:eq('+i+')');
+                var icon = item.find('.glyphicon');
+                if(icon){
+                    icon.removeClass(old_icons)
+                    icon.addClass(icons[i]);
+                }
+            };
+        });
+
+
+    </script>
 {% endblock %} 
