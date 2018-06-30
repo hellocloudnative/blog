@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+   <body style="height: 100%; margin: 0">
+       <div id="container" style="height: 100%"></div>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+       <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+       <script type="text/javascript">
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+option = {
+     title: {
+        text: '微信全国分布图 ',
+        subtext: '真实数据',
+        x: 'center'
+    },
+    tooltip: {
+        trigger: 'item',
+    },
+        legend: {
+        orient: 'vertical',
+        x: 'left',
+        data: ['好友数量']
+    },
+    dataRange: {
+        min: 0,
+        max: 200,
+        x: 'left',
+        y: 'bottom',
+        text: ['高', '低'],
+        calculable: true
+    },
+    toolbox: {
+        show: true,
+        orient: ' vertical',
+        x: 'left',
+        y: 'center',
+        feature: {
+            mark: {show: true},
+            dataView: {show: true, readOnly: false},
+            restore: {show: true},
+            saveAsImage: {show: true}
+        }
+    },
+
+    roamController: {
+        show: true,
+        x: 'right',
+        mapTypeControl: {
+            'china': true
+        }
+    },
+    series: [
+        {
+            name: '中国',
+            type: 'map',
+            mapType: 'china',
+            selectedMode : 'multiple',
+            roam: false,
+            label: {
+                normal: {
+                    show: true
+                },
+                emphasis: {
+                    show: true
+                }
+            },
+            data:[
+          {'name': '北京', 'value': 12},
+                {'name': '天津', 'value': 0},
+                {'name': '上海', 'value': 4},
+                {'name': '重庆', 'value': 2},
+                {'name': '河北', 'value': 5},
+                {'name': '山西', 'value': 53},
+                {'name': '辽宁', 'value': 34},
+                {'name': '吉林', 'value': 1},
+                {'name': '黑龙江', 'value': 7},
+                {'name': '江苏', 'value': 2},
+                {'name': '浙江', 'value': 7},
+                {'name': '安徽', 'value': 5},
+                {'name': '福建', 'value': 2},
+                {'name': '江西', 'value': 0},
+                {'name': '山东', 'value': 4},
+                {'name': '河南', 'value': 0},
+                {'name': '湖北', 'value': 2},
+                {'name': '湖南', 'value': 4},
+                {'name': '广东', 'value': 7},
+                {'name': '海南', 'value': 0},
+                {'name': '四川', 'value': 3},
+                {'name': '贵州', 'value': 1},
+                {'name': '云南', 'value': 1},
+                {'name': '陕西', 'value': 4},
+                {'name': '甘肃', 'value': 0},
+                {'name': '青海', 'value': 0},
+                {'name': '台湾', 'value': 0},
+                {'name': '内蒙古自治区', 'value': 0},
+                {'name': '广西壮族自治区', 'value': 0},
+                {'name': '西藏自治区', 'value': 0},
+                {'name': '宁夏回族自治区', 'value': 0},
+                {'name': '新疆维吾尔自治区', 'value': 0},
+                {'name': '香港特别行政区', 'value': 0},
+                {'name': '澳门特别行政区', 'value': 0}
+            ]
+        }
+    ]
+};;
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}
+       </script>
+   </body>
+</html>
