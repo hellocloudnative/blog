@@ -61,6 +61,17 @@ div.blog-info-1 {
 }
 .h3, h3 {
     font-size: 24px;
+
+}
+
+div.blog_content img {
+    display: block;
+    height: auto;
+    max-width: 90%;
+    margin-left: 2em;
+}
+div#cyReward .cy-reward-btn {
+    margin-left: 40%;
 }
 div.django-ckeditor-widget{
     width: 100%;
@@ -86,3 +97,4 @@ p#reply_title{
     border-bottom: 1px dashed #CCC;
     padding-bottom: 0.5em;
 }
+

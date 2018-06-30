@@ -13,19 +13,18 @@
   </component>
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$" />
-    <orderEntry type="jdk" jdkName="Python 3.6 virtualenv at C:\Users\Administrator.WIN-760BVV74TG6\Desktop\mysite_env" jdkType="Python SDK" />
+    <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
     <option name="TEMPLATE_FOLDERS">
       <list>
-        <option value="$MODULE_DIR$/blog/templates" />
+        <option value="$MODULE_DIR$/../mysite\templates" />
       </list>
     </option>
   </component>
   <component name="TestRunnerService">
-    <option name="projectConfiguration" value="py.test" />
-    <option name="PROJECT_TEST_RUNNER" value="py.test" />
+    <option name="PROJECT_TEST_RUNNER" value="Unittests" />
   </component>
 </module>
