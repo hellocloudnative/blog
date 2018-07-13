@@ -13,5 +13,5 @@ class BlogAdmin(admin.ModelAdmin):
 # class ReadNumAdmin(admin.ModelAdmin):
 #     list_display =('read_num','blog')
 
-        
+
     

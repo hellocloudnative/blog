@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ckeditor',
     'ckeditor_uploader',
+    'mdeditor',
+    'pygments',
     'blog',
     'read_statistics',
     'comment',
@@ -151,7 +153,7 @@ STATIC_URL = '/static/'
 # 当运行 python manage.py collectstatic 的时候
 # STATIC_ROOT 文件夹 是用来将所有STATICFILES_DIRS中所有文件夹中的文件，以及各app中static中的文件都复制过来
 # 把这些文件放到一起是为了用apache等部署的时候更方便
-STATIC_ROOT = os.path.join(BASE_DIR, '/collected_static/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static/')
  
 # 其它 存放静态文件的文件夹，可以用来存放项目中公用的静态文件，里面不能包含 STATIC_ROOT
 # 如果不想用 STATICFILES_DIRS 可以不用，都放在 app 里的 static 中也可以
@@ -174,6 +176,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 #配置ckeditor
 CKEDITOR_UPLOAD_PATH = 'upload/'
+CKEDITOR_IMAGE_BACKEND = 'pillow'
 CKEDITOR_CONFIGS ={
     'default':{},
     'comment_ckeditor':{

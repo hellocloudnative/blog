@@ -4,7 +4,7 @@
 
 
 ul.blog-types {
-   list-style-type: none;
+    list-style-type: none;
 }
 
 div.blog {
@@ -20,20 +20,20 @@ div.blog a {
 }
 
 div.blog h4 {
-    margin-top: 0.5em;   
+    margin-top: 0.5em;
 }
 div.content-info {
     color: #777;
     font-size: small;
 }
-}
+
 div.paginator {
     text-align: center;
 }
 
 ul.blog-info-description {
     list-style-type: none;
-    margin-bottom:2em;    
+    margin-bottom:2em;
 }
 ul.blog-info-description li {
     display: inline-block;
@@ -77,13 +77,12 @@ div.django-ckeditor-widget{
     width: 100%;
 }
 div.comment{
-border-bottom: 1px dashed #CCC;
+    border-bottom: 1px dashed #CCC;
     margin-bottom: 0.5em;
     padding-bottom: 0.5em;
 }
 div.reply{
     margin-left: 2em;
-;
 }
 
 div#reply_content_container{

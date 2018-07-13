@@ -8,6 +8,7 @@ from django.db.models import Sum
 from django.core.cache import cache
 from django.contrib.auth.models import User
 from django.contrib import auth
+from django.contrib.auth import  logout as login_out
 from django.urls import reverse
 from .forms import LoginForm,RegForm
 from  blog.views import get_blog_list_common_data
@@ -37,6 +38,7 @@ def home(request):
 
     context = get_blog_list_common_data(request, blogs_all_list)
     context['dates']=dates
+    context['user'] = request.user
     context['read_nums']=read_nums
     context['today_hot_data']=get_today_hot_data(blog_content_type)
     context['yesterday_hot_data']=get_yesterday_hot_data(blog_content_type)
@@ -67,6 +69,11 @@ def login(request):
     context={}
     context['login_form']=login_form
     return render(request,'login.html',context)
+
+def loginout(request):
+    login_out(request)
+    return redirect('home')
+
 
 def register(request):
     if request.method =='POST':

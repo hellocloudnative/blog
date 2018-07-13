@@ -3,12 +3,14 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="{% static 'images/favicon.ico' %}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name=”description” content=”张鹏璇的个人博客”>
     <meta name=”keyword” content=”个人博客，张鹏璇，张鹏璇的个人博客，张鹏璇的博客，django，python，linux，运维，机器学习---“>
     <link rel="stylesheet" href="{% static "base.css" %}">
     <link rel="stylesheet" href="{% static "bootstrap-3.3.7/css/bootstrap.min.css" %}">
+    <link rel="stylesheet" href="{% static 'github.css' %}">
     <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <script type="text/javascript" src="{% static "jquery-1.12.4.min.js" %}"></script>
@@ -38,6 +40,16 @@
                 <li class="{% block nav_blog_active %}{% endblock %}">
                     <a href="{% url "blog_list" %}"><span class="glyphicon glyphicon-pencil"></span>博客</a>
                 </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
+                    <li><a href="#">{{ user.username }}</a></li>
+                    <li><a href="{% url 'login_out' %}">退出</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">登录</a></li>
+                    <li><a href="{% url 'register' %}">注册</a></li>
+                {% endif %}
+
             </ul>
         </div>
     </div>

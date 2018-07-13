@@ -7,6 +7,8 @@ from read_statistics.utils import read_statistics_once_read
 from comment.models import comment
 from django.contrib.contenttypes.models import ContentType
 from comment.forms import CommentForm
+import markdown
+
 
 def get_blog_list_common_data(request,blogs_all_list):
     paginator=Paginator(blogs_all_list,settings.EACH_PAGE_BLOGS_NUMBER)#每十篇进行分页
@@ -103,6 +105,8 @@ def blog_detail(request,blog_pk):
     context['previous_blog'] = Blog.objects.filter(create_time__gt=blog.create_time).last()
     context['next_blog'] = Blog.objects.filter(create_time__lt=blog.create_time).first()
     context['blog']=blog
+    blog.content=markdown.markdown(blog.content,['extra','codehilite','toc',])
+
     context['user']=request.user
     # context['comments']=comments.order_by('-comment_time')
     # context['comment_count']= comments=comment.objects.filter(content_type=blog_content_type,object_id=blog.pk).count()
