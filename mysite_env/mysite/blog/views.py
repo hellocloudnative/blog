@@ -8,7 +8,7 @@ from comment.models import comment
 from django.contrib.contenttypes.models import ContentType
 from comment.forms import CommentForm
 import markdown
-
+from django.views import  view
 
 def get_blog_list_common_data(request,blogs_all_list):
     paginator=Paginator(blogs_all_list,settings.EACH_PAGE_BLOGS_NUMBER)#每十篇进行分页
