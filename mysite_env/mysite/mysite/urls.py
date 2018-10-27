@@ -29,6 +29,7 @@ urlpatterns = [
     path('login_out/',views.loginout,name="login_out"),
     path('comment/', include('comment.urls')),
     path('register/', views.register, name="register"),
+    path('likes/', include('likes.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
